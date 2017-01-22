@@ -1,0 +1,276 @@
+/*
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+INDEX
+
+1. Custom styling for the specific site
+2. Reusable classes
+3. Flex media queries
+4. Column media queries
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+*/
+
+
+
+/*////////////////////////
+///////////////////////////
+//Portfolio.html custom//
+////starts here//////////
+/////////////////////////
+////////////////////////*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html, *{
+  font-family: Roboto;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  background-color: grey;
+
+}
+
+
+
+.top{
+  background-color: skyblue;
+  height: 400px;
+}
+
+.nav{
+  background-color: black;
+  height: 100px;
+}
+
+.mid{
+  background-color: lightgrey;
+  height: 400px;
+}
+
+.bottom{
+  background-color: gold;
+  height: 400px;
+}
+
+.header{
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/12005/hero-demo5.jpg);
+  width: 100%;
+  height: 300px;
+}
+
+.personalDescription{
+  color:white;
+  padding:30px;
+}
+
+
+/*//////////////////
+////////////////////
+//REUSABLE CLASSES//
+////starts here/////
+////////////////////
+/////////////////*/
+
+
+html, body {
+  margin:0;
+}
+
+.clearfix:after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+
+/*individual flexbox classes*/
+
+
+/*these are flex classes you can put in the parent container of flex elements*/
+.flex-container{
+  display: flex;
+}
+
+.flex-justify-end{
+  justify-content: flex-end;
+}
+
+.flex-justify-center{
+  justify-content: center;
+}
+
+.flex-justify-space-between{
+  justify-content: space-between;
+}
+
+.flex-justify-space-around{
+  justify-content: space-around;
+}
+
+/*to make element responsive to screen size*/
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.flex-wrap-reverse{
+  flex-wrap: wrap-reverse;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+.flex-row-reverse{
+  flex-direction: row-reverse;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.flex-column-reverse{
+  flex-direction: column-reverse;
+}
+
+
+
+/*this are classes you can put inside the children or the content of the parent container*/
+
+/*align self is used to align the lement vertically similar to justfy which will align horizontaly. however align self is used in the children element*/
+.flex-align-self-strech{
+  align-self: stretch;
+}
+.flex-align-self-end{
+  align-self: flex-end;
+}
+
+
+
+
+/*flex grow will automatically put width or height into the element and divided it equally */
+.flex-grow-1{
+  flex-grow: 1;
+}
+
+/*flex basis will generate size of the element. it is similar like width or height property however it is build specific for flexbox this will change the width or height depending on the direction of the flex*/
+.flex-basis-30 {
+  flex-basis: 30%;
+}
+.flex-basis-50 {
+  flex-basis: 50%;
+}
+
+.flex-center{
+  margin: auto;
+}
+
+
+@media (max-width: 575px) {
+    .hidden-xs-sm {
+        display: none;
+    }
+}
+
+
+/*///////////////////////
+/////////////////////////
+//FLEXBOX DIRECTIONS ////
+////starts here//////////
+/////////////////////////
+///////////////////////*/
+
+
+$map2: (1200:xl, 992:lg, 768:md, 576:sm, 0:xs);
+
+@each $screen, $size in $map2{
+  @media all and (min-width: $screen+ px){
+    .flex-column-#{$size}{
+      flex-direction: column;
+    }
+  }
+}
+
+@each $screen, $size in $map2{
+  @media all and (min-width: $screen+ px){
+    .flex-row-#{$size}{
+      flex-direction: row;
+    }
+  }
+}
+
+/*///////////////////////
+/////////////////////////
+//FLEXBOX MEDIA QUERIES//
+////starts here//////////
+/////////////////////////
+///////////////////////*/
+
+@each $screen, $size in $map2{
+
+  @media all and (min-width: $screen + px){
+
+    @for $a from 1 through 12{
+      .flex-#{$size}-#{$a}{
+
+        flex: $a;
+      }
+    }
+  }
+}
+
+/*///////////////////////
+/////////////////////////
+//COLUMN MEDIA QUERIES//
+////starts here//////////
+/////////////////////////
+///////////////////////*/
+
+
+
+// this is scss code to create classes for flexbox sizes
+$map: (1200:xl, 992:lg, 768:md, 576:sm, 0:xs);
+
+@each $screen, $size in $map{
+
+  @media all and (min-width: $screen + px){
+
+    @for $a from 1 through 12{
+      $equ: 100%*($a/12);
+      .cel-#{$size}-#{$a}{
+
+        flex-basis: $equ;
+      }
+    }
+  }
+}
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+}
